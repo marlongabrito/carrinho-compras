@@ -1,5 +1,23 @@
+let carrinhoDeCompras = [];
+let nomeProduto;
+let quantidade;
+
+function adicionarItem() {
+    nomeProduto = document.querySelector('#quantidade').value;
+    quantidade = Number(document.querySelector('#quantidade').value);
+    let adicionarItem = `${quantidade}x ${nomeProduto}`;
+    carrinhoDeCompras.push(adicionarItem);
+    console.log(carrinhoDeCompras);
+}
+
+function limpar() {
+    carrinhoDeCompras = [];
+}
+
+limpar();
+
 function adicionar() {
-    let nomeProduto = document.querySelector('#produto').value;
-    let quantidade = document.querySelector('#quantidade').value;
-    console.log(`produto e preço: ${nomeProduto} - quantidade = ${quantidade}`);
+    if (Number.isInteger(quantidade)) {
+        adicionarItem()
+    }
 }
