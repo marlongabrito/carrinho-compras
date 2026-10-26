@@ -1,23 +1,32 @@
-let carrinhoDeCompras = [];
-let nomeProduto;
-let quantidade;
+let totalGeral = 0
 
-function adicionarItem() {
-    nomeProduto = document.querySelector('#quantidade').value;
-    quantidade = Number(document.querySelector('#quantidade').value);
-    let adicionarItem = `${quantidade}x ${nomeProduto}`;
-    carrinhoDeCompras.push(adicionarItem);
-    console.log(carrinhoDeCompras);
+function separarDados() {
+    let produtoEscolhido = document.querySelector('#produto').value;
+    let dadosDoProduto = produtoEscolhido.split(' - ');
+    let precoDoProduto = Number(dadosDoProduto[1].replace('R$', ''));
+    let nomeDoProduto = dadosDoProduto[0];
+    return {nome: nomeDoProduto, preco: precoDoProduto};
+}
+
+function adicionar() {
+    let dados = separarDados();
+    let quantidade = Number(document.querySelector('#quantidade').value);
+    let valorDoAdicionado = dados.preco * quantidade;
+    totalGeral += valorDoAdicionado;
+    alterarPrecoTotal(totalGeral);
 }
 
 function limpar() {
-    carrinhoDeCompras = [];
+    totalGeral = 0;
+    alterarPrecoTotal(totalGeral);
 }
 
-limpar();
+function alterarPrecoTotal(valor) {
+    let campo = document.querySelector('#valor-total');
+    let preco = `R$${valor}`;
+    campo.textContent = preco;
+}
 
-function adicionar() {
-    if (Number.isInteger(quantidade)) {
-        adicionarItem()
-    }
+function adicionarProdutoNaLista(quantidade, nome, subtotal) {
+    let lista = [];
 }
